@@ -69,12 +69,12 @@ stop
 
 Sets the Auto Scaling Group parameters to :code:`min/max/desired = 0/0/0`
 
-.. note:: A stopped cluster will only stops complete-fleet, but Master server
-will be running for debugging/development. Hence you will be charged
-for master server even when you stop your cluster. we have seen numerous
-failures when we stop/start master back, so we decide to keep it running
-for better user experience. Do use "delete" option to avoid cost
-and recreate the cluster back when need.
+.. note:: A stopped cluster will only terminate the  complete-fleet.
+Previous versions of CfnCluster stopped the master node after terminating
+the compute fleet. Due to a number of challenges with the implementation
+of that feature, the current version only terminates the compute fleet.
+The master will remain running. To terminate all EC2 resources and avoid EC2 charges,
+consider deleting the cluster.
 
 positional arguments:
   cluster_name  stops the compute-fleet of the provided cluster name.
